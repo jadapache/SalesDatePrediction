@@ -60,6 +60,7 @@ Para correr las pruebas:
 
 ```bash
 dotnet test
+```
 
 
 ### Front End (SPA en Angular)
@@ -72,6 +73,7 @@ Para correr la aplicación:
 ```bash
 npm install
 ```
+
 
 3. Iniciar la aplicación Angular:
 
