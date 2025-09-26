@@ -1,0 +1,46 @@
+<div class="header-bar">
+  <div class="header-left">Sales Date Prediction App</div>
+  <div class="header-right">
+    <img src="logo.png" alt="Logo" class="logo">
+  </div>
+</div>
+
+<div class="table-container">
+  <div class="header-container">
+    <div class="title">Customers</div>
+    <mat-form-field appearance="fill">
+      <mat-label>Customer Name</mat-label>
+      <input matInput (keyup)="applyFilter($event)" placeholder="Search">
+    </mat-form-field>
+  </div>
+
+  <table mat-table [dataSource]="dataSource" matSort>
+    <ng-container matColumnDef="customerName">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Customer Name </th>
+      <td mat-cell *matCellDef="let element"> {{element.customerName}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="lastOrderDate">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Last Order Date </th>
+      <td mat-cell *matCellDef="let element"> {{element.lastOrderDate | date:'shortDate'}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="nextPredictedOrder">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Next Predicted Order </th>
+      <td mat-cell *matCellDef="let element"> {{element.nextPredictedOrder | date:'shortDate'}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef> </th>
+      <td mat-cell *matCellDef="let element">
+        <a routerLink="/view-orders/{{element.customerId}}" class="action-link view-orders">VIEW ORDERS</a>
+        <a routerLink="/new-order/" class="action-link new-order">NEW ORDER</a>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+  <mat-paginator [pageSizeOptions]="[5, 10, 20]"></mat-paginator>
+</div>
